@@ -56,11 +56,17 @@ public class MinigameManager : MonoBehaviour
 
             currentGameBase = Instantiate(config.gameSourcePrefab);
             minigameInterface = currentGameBase.GetComponent<IMinigame>();
+            minigameInterface.Initialize(this);
         }
         else
         {
             Debug.LogError("Minigame config has no game source prefab attached.");
         }
+    }
+    public void HandleGameEnd(int finalScore)
+    {
+        print("Game End! Score: " + finalScore.ToString());
+        ExitGame();
     }
     public void StopGameLogic()
     {
