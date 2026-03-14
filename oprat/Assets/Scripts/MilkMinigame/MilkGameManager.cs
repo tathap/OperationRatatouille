@@ -1,21 +1,41 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.UI;
 public class MilkGameManager : MonoBehaviour
 {
 
-    [SerializeField] GameObject fridge;
     Animator anim;
+    MilkGameHook gameHook;
 
-    [SerializeField] float milkValue;
+    [SerializeField] TMP_Text timerText;
+    [SerializeField] float gameTime;
+
+
+    [SerializeField] Slider valueSlider;
+    [SerializeField] Slider markerSlider;
+    [SerializeField] GameObject fridge;
+
+    float targetValue;
+    float milkValue;
     [SerializeField] float milkIncrement;
     [SerializeField] float milkDecayPerSec;
     bool gameActive;
 
-    public void Start()
+    public void Awake()
     {
         anim = fridge.GetComponentInChildren<Animator>();
+    }
+
+    public void Start()
+    {
+        // calculate marker position
+        float minV = valueSlider.minValue + 2f;
+        float maxV = valueSlider.maxValue - 2f;
+
+        targetValue = Random.Range(minV, maxV);
+        markerSlider.SetValueWithoutNotify(targetValue);
 
         gameActive = true;
     }
@@ -27,6 +47,15 @@ public class MilkGameManager : MonoBehaviour
             return;
         }
 
+        if (gameTime < 0)
+        {
+            EndGame();
+            return;
+        }
+
+        gameTime -= Time.deltaTime;
+        timerText.text = gameTime.ToString("F2");
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             print("space");
@@ -37,6 +66,11 @@ public class MilkGameManager : MonoBehaviour
         {
             milkValue -= milkDecayPerSec * Time.deltaTime;
         }
+
+        // clamp milk
+        milkValue = Mathf.Min(milkValue, valueSlider.maxValue);
+
+        valueSlider.value = milkValue;
     }
 
     public void Shake()
@@ -44,4 +78,39 @@ public class MilkGameManager : MonoBehaviour
         milkValue += milkIncrement;
         anim.Play("milkATMShake");
     }
+
+    public void EndGame()
+    {
+        gameActive = false;
+        float diff = Mathf.Abs(milkValue - targetValue);
+        int score = ComputeScore(diff);
+        gameHook.HandleGameEnd(score);
+    }
+
+    int ComputeScore(float diff)
+    {
+        int score;
+        if (diff < 0.25f)
+        {
+            score = 5;
+        }
+        else if (diff < 0.5f)
+        {
+            score = 4;
+        }
+        else if (diff < 1f)
+        {
+            score = 3;
+        }
+        else if (diff < 2f)
+        {
+            score = 2;
+        }
+        else
+        {
+            score = 1;
+        }
+        return score;
+    }
+
 }
