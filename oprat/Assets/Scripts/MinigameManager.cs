@@ -4,9 +4,15 @@ using UnityEngine.UI;
 
 public class MinigameManager : MonoBehaviour
 {
+
+    RoundStateManager rsm;
+
+    /*
+     * Parameters for managing the current minigame
+     */
     bool gameActive;
     GameObject currentGameBase;
-    IMinigame minigameInterface;
+    MinigameConfig currentConfig;
 
     [Header("UI Fields")]
 
@@ -16,9 +22,15 @@ public class MinigameManager : MonoBehaviour
     [SerializeField] Image backgroundPanel;
     [SerializeField] Image gameWindowPanel;
 
+    public void Start()
+    {
+        rsm = FindFirstObjectByType<RoundStateManager>();
+    }
+
     public void EnterGame(MinigameConfig config)
     {
         mainWindow.SetActive(true);
+        currentConfig = config;
         InitializeGameUI(config);
         StartGameLogic(config);
         gameActive = true;
@@ -55,7 +67,7 @@ public class MinigameManager : MonoBehaviour
         {
 
             currentGameBase = Instantiate(config.gameSourcePrefab);
-            minigameInterface = currentGameBase.GetComponent<IMinigame>();
+            IMinigame minigameInterface = currentGameBase.GetComponent<IMinigame>();
             minigameInterface.Initialize(this);
         }
         else
@@ -66,12 +78,14 @@ public class MinigameManager : MonoBehaviour
     public void HandleGameEnd(int finalScore)
     {
         print("Game End! Score: " + finalScore.ToString());
+        FoodInstance reward = new FoodInstance(finalScore, currentConfig.foodConfig);
+        rsm.RecieveGameReward(reward);
         ExitGame();
     }
     public void StopGameLogic()
     {
         Destroy(currentGameBase);
         currentGameBase = null;
-        minigameInterface = null;
+        currentConfig = null;
     }
 }
