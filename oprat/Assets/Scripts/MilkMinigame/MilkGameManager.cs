@@ -25,6 +25,7 @@ public class MilkGameManager : MonoBehaviour
 
     public void Awake()
     {
+        gameHook = FindFirstObjectByType<MilkGameHook>();
         anim = fridge.GetComponentInChildren<Animator>();
     }
 
