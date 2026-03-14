@@ -6,6 +6,7 @@ public class MinigameManager : MonoBehaviour
 {
     bool gameActive;
     GameObject currentGameBase;
+    IMinigame minigameInterface;
 
     [Header("UI Fields")]
 
@@ -50,10 +51,21 @@ public class MinigameManager : MonoBehaviour
 
     public void StartGameLogic(MinigameConfig config)
     {
-        currentGameBase = null;
+        if (config.gameSourcePrefab != null)
+        {
+
+            currentGameBase = Instantiate(config.gameSourcePrefab);
+            minigameInterface = currentGameBase.GetComponent<IMinigame>();
+        }
+        else
+        {
+            Debug.LogError("Minigame config has no game source prefab attached.");
+        }
     }
     public void StopGameLogic()
     {
+        Destroy(currentGameBase);
         currentGameBase = null;
+        minigameInterface = null;
     }
 }

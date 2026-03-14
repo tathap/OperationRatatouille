@@ -8,4 +8,5 @@ public class MinigameConfig : ScriptableObject
     [SerializeField] public string ControlsInstr;
     [SerializeField] public Color backgroundColor;
     [SerializeField] public Color gameWindowColor;
+    [SerializeField] public GameObject gameSourcePrefab;
 }
