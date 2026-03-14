@@ -91,15 +91,15 @@ public class MilkGameManager : MonoBehaviour
     int ComputeScore(float diff)
     {
         int score;
-        if (diff < 0.25f)
+        if (diff < 0.5f)
         {
             score = 5;
         }
-        else if (diff < 0.5f)
+        else if (diff < 1f)
         {
             score = 4;
         }
-        else if (diff < 1f)
+        else if (diff < 1.5f)
         {
             score = 3;
         }

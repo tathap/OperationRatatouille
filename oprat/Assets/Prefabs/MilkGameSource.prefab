@@ -510,7 +510,7 @@ MonoBehaviour:
   valueSlider: {fileID: 5053459303961387226}
   markerSlider: {fileID: 4067455344095822803}
   fridge: {fileID: 6977172133562286213}
-  milkIncrement: 1
+  milkIncrement: 3
   milkDecayPerSec: 5
 --- !u!1 &4344420730331051847
 GameObject:
