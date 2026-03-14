@@ -16,4 +16,4 @@ MonoBehaviour:
   GoalInstr: Shake the Milk just the right amount!
   ControlsInstr: Tap space to shake
   backgroundColor: {r: 0, g: 0.009439283, b: 0.335849, a: 0.58431375}
-  gameWindowColor: {r: 0.4584905, g: 0.88108027, b: 1, a: 0}
+  gameWindowColor: {r: 0.4584905, g: 0.88108027, b: 1, a: 1}
