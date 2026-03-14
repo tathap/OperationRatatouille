@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76e6b52d1b82d4846893b28636f006df, type: 3}
+  m_Name: MilkShakeMinigame
+  m_EditorClassIdentifier: 
+  Name: Milk ATM Shake
+  GoalInstr: Shake the Milk just the right amount!
+  ControlsInstr: Tap space to shake
+  backgroundColor: {r: 0, g: 0.009439283, b: 0.335849, a: 0.58431375}
+  gameWindowColor: {r: 0.4584905, g: 0.88108027, b: 1, a: 0}
