@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76e6b52d1b82d4846893b28636f006df, type: 3}
+  m_Name: MaizeMinigame
+  m_EditorClassIdentifier: 
+  Name: Maize
+  GoalInstr: Complete 3 mazes as fast as you can!
+  ControlsInstr: WASD or Arrows to move!
+  cost: 15
+  backgroundColor: {r: 0.019971518, g: 0.20754719, b: 0.11300901, a: 0.7607843}
+  gameWindowColor: {r: 0.5707013, g: 0.7735849, b: 0.60739166, a: 1}
+  gameSourcePrefab: {fileID: 850578011212077925, guid: e97d8f523ebd4bb48a233bfa25cb2971, type: 3}
+  foodConfig: {fileID: 11400000, guid: 0a147c680688fcc43889fbe5f56f8c31, type: 2}
