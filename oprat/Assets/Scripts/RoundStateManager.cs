@@ -8,13 +8,16 @@ public class RoundStateManager : MonoBehaviour
     MinigameManager minigameManager;
 
     [Header("DO NOT TOUCH MY VALUES!!!")]
-    [SerializeField] int round;
-    [SerializeField] int money;
-    [SerializeField] int qualityScore = 0;
-    [SerializeField] int varietyScore = 0;
+    [SerializeField] public int round;
+    [SerializeField] public int money;
+    [SerializeField] public int qualityScore = 0;
+    [SerializeField] public int varietyScore = 0;
 
     [Header("Cart")]
-    [SerializeField] List<FoodInstance> cart = new List<FoodInstance>();
+    [SerializeField] public List<FoodInstance> cart = new List<FoodInstance>();
+
+    [SerializeField] List<FoodInstance> supermarketHaulTemplate = new List<FoodInstance>();
+    [SerializeField] List<FoodInstance> fastFoodHaulTemplate = new List<FoodInstance>();
 
     bool hasProduce = false;
     bool hasGrain = false;
@@ -23,6 +26,7 @@ public class RoundStateManager : MonoBehaviour
 
 
     [Header("UI FIELDS")]
+    [SerializeField] TMP_Text foodCt;
     [SerializeField] TMP_Text weekText;
     [SerializeField] TMP_Text moneyText;
     [SerializeField] TMP_Text qualityText;
@@ -32,14 +36,20 @@ public class RoundStateManager : MonoBehaviour
     [SerializeField] GameObject proteinInCart;
     [SerializeField] GameObject produceInCart;
 
+    public float GetQualityAvg()
+    {
+        return (float)qualityScore / cart.Count;
+    }
+
     public void UpdateUI()
     {
+        foodCt.text = "# food: " + cart.Count;
         weekText.text = "week: " + (round + 1).ToString();
-        moneyText.text = "money: " + money.ToString();
+        moneyText.text = "$" + money.ToString();
         if (cart.Count > 0)
         {
             qualityText.text = "avg quality: " + ((float)qualityScore / cart.Count).ToString("F2");
-            varietyText.text = "avg variety: " + ((float)varietyScore / cart.Count).ToString("F2");
+            varietyText.text = "variety: " + varietyScore;
         }
         else
         {
@@ -58,17 +68,33 @@ public class RoundStateManager : MonoBehaviour
         minigameManager = FindFirstObjectByType<MinigameManager>();
     }
 
-    public void Start()
-    {
-        // test initialize
-        Initialize(4, 50);
-    }
-
     public void Initialize(int round, int money)
     {
         this.round = round;
         this.money = money;
         UpdateUI();
+    }
+    public void OnPurchaseSupermarket(VendorConfig config)
+    {
+        money -= config.cost;
+        print(config.cost);
+
+        foreach (FoodInstance item in supermarketHaulTemplate)
+        {
+            RecieveGameReward(item);
+        }
+
+    }
+
+    public void OnPurchaseFastFood(VendorConfig config)
+    {
+        money -= config.cost;
+        print(config.cost);
+
+        foreach (FoodInstance item in fastFoodHaulTemplate)
+        {
+            RecieveGameReward(item);
+        }
     }
 
     /// <summary>

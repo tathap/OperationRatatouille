@@ -36,19 +36,19 @@ public class Scorekeep : MonoBehaviour
     }
     int ComputeScore(int score)
     {
-        if (score >= 1300 && badFruitCount == 0)
+        if (score >= 1200 && badFruitCount == 0)
         {
             return 5;
         }
-        else if (score >= 1100f)
+        else if (score >= 800f)
         {
             score = 4;
         }
-        else if (score >= 1000f)
+        else if (score >= 600f)
         {
             score = 3;
         }
-        else if (score >= 800f)
+        else if (score >= 300f)
         {
             score = 2;
         }

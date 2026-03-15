@@ -8,6 +8,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/RoundScene.unity
+    guid: c7d1022db570b2046a8aefeb44e3f1a6
+  - enabled: 1
+    path: Assets/Scenes/TempWin.unity
+    guid: b337a5c487e43394b835487632846029
+  - enabled: 1
+    path: Assets/Scenes/TempLose.unity
+    guid: 2c0492f98999aac4782ae8acedfa5e62
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 127ef1a79bb7bcf4e88005aabd947293
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
