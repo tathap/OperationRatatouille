@@ -6,6 +6,7 @@ public class MinigameRegistry : MonoBehaviour
     [SerializeField] MinigameConfig milkConfig;
     [SerializeField] MinigameConfig fishConfig;
     [SerializeField] MinigameConfig fruitConfig;
+    [SerializeField] MinigameConfig maizeConfig;
 
     public void Awake()
     {
@@ -25,5 +26,10 @@ public class MinigameRegistry : MonoBehaviour
     public void StartFruit()
     {
         minigameManager.EnterGame(fruitConfig);
+    }
+
+    public void StartMaize()
+    {
+        minigameManager.EnterGame(maizeConfig);
     }
 }
