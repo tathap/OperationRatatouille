@@ -7,12 +7,20 @@ public class RoundStateManager : MonoBehaviour
 {
     MinigameManager minigameManager;
 
-    int round;
-    int money;
-    int totalfood;
-    int qualityScore = 0;
-    int varietyScore = 0;
+    [Header("DO NOT TOUCH MY VALUES!!!")]
+    [SerializeField] int round;
+    [SerializeField] int money;
+    [SerializeField] int qualityScore = 0;
+    [SerializeField] int varietyScore = 0;
+
+    [Header("Cart")]
     [SerializeField] List<FoodInstance> cart = new List<FoodInstance>();
+
+    bool hasProduce = false;
+    bool hasGrain = false;
+    bool hasProtein = false;
+    bool hasDairy = false;
+
 
     [Header("UI FIELDS")]
     [SerializeField] TMP_Text weekText;
@@ -24,10 +32,10 @@ public class RoundStateManager : MonoBehaviour
     {
         weekText.text = "week: " + (round + 1).ToString();
         moneyText.text = "money: " + money.ToString();
-        if (totalfood > 0)
+        if (cart.Count > 0)
         {
-            qualityText.text = "quality: " + ((float)qualityScore / totalfood).ToString("F2");
-            varietyText.text = "variety: " + ((float)qualityScore / totalfood).ToString("F2");
+            qualityText.text = "avg quality: " + ((float)qualityScore / cart.Count).ToString("F2");
+            varietyText.text = "avg variety: " + ((float)varietyScore / cart.Count).ToString("F2");
         }
         else
         {
@@ -44,16 +52,14 @@ public class RoundStateManager : MonoBehaviour
     public void Start()
     {
         // test initialize
-        Initialize(1, 250, 0, 3, 3);
+        Initialize(1, 250);
     }
 
-    public void Initialize(int round, int money, int totalfood, int qualityScore, int varietyScore)
+    public void Initialize(int round, int money)
     {
         this.round = round;
         this.money = money;
-        this.totalfood = totalfood;
-        this.qualityScore = qualityScore;
-        this.varietyScore = varietyScore;
+        UpdateUI();
     }
 
     /// <summary>
@@ -65,6 +71,7 @@ public class RoundStateManager : MonoBehaviour
         if (CanAfford(config.cost))
         {
             minigameManager.EnterGame(config.minigameConfig);
+            money -= config.cost;
         }
         else
         {
@@ -78,6 +85,32 @@ public class RoundStateManager : MonoBehaviour
     public void RecieveGameReward(FoodInstance food)
     {
         cart.Add(food);
+        qualityScore += food.GetCondition();
+
+        FoodConfig fc = food.GetFoodConfig();
+
+        if (!hasProduce && fc.Type == FoodType.PRODUCE)
+        {
+            hasProduce = true;
+            varietyScore++;
+        }
+        if (!hasGrain && fc.Type == FoodType.GRAIN)
+        {
+            hasGrain = true;
+            varietyScore++;
+        }
+        if (!hasProtein && fc.Type == FoodType.PROTEIN)
+        {
+            hasProtein = true;
+            varietyScore++;
+        }
+        if (!hasDairy && fc.Type == FoodType.DAIRY)
+        {
+            hasDairy = true;
+            varietyScore++;
+        }
+
+        UpdateUI();
     }
     public bool CanAfford(int price)
     {

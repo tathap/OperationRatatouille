@@ -62,7 +62,7 @@ public class FishGameLogicScript : MonoBehaviour
             }
         }
         finalOrder = new List<int>();
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
             for (int j = 0; j < 3; j++)
             {
@@ -102,7 +102,7 @@ public class FishGameLogicScript : MonoBehaviour
             curObject = Instantiate(allFish[finalOrder[considerIndex]], new Vector3(-3f, 1, 0), Quaternion.identity);
             curObject.transform.localScale = new Vector3(2f, 2f, 2f);
 
-            if (considerIndex + (3 - numChosen) >= 9)
+            if (considerIndex + (3 - numChosen) >= 6)
             {
                 Debug.Log(numChosen + " " + considerIndex);
                 Debug.Log("Player has to choose all of the remaining fish");

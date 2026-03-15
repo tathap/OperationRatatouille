@@ -1910,6 +1910,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1124955292}
     m_Modifications:
+    - target: {fileID: 5515669768597193621, guid: ed21c21fa187aad41a3692983b7f6b1a, type: 3}
+      propertyPath: weekText
+      value: 
+      objectReference: {fileID: 1899807487}
+    - target: {fileID: 5515669768597193621, guid: ed21c21fa187aad41a3692983b7f6b1a, type: 3}
+      propertyPath: moneyText
+      value: 
+      objectReference: {fileID: 483164803}
+    - target: {fileID: 5515669768597193621, guid: ed21c21fa187aad41a3692983b7f6b1a, type: 3}
+      propertyPath: qualityText
+      value: 
+      objectReference: {fileID: 808448182}
+    - target: {fileID: 5515669768597193621, guid: ed21c21fa187aad41a3692983b7f6b1a, type: 3}
+      propertyPath: varietyText
+      value: 
+      objectReference: {fileID: 1530946208}
     - target: {fileID: 7701603664651643392, guid: ed21c21fa187aad41a3692983b7f6b1a, type: 3}
       propertyPath: m_Name
       value: RoundStateManager
@@ -4263,8 +4279,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -669, y: 321}
-  m_SizeDelta: {x: 400, y: 50}
+  m_AnchoredPosition: {x: -573, y: 321}
+  m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &808448182
 MonoBehaviour:
@@ -7082,8 +7098,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -669, y: 260}
-  m_SizeDelta: {x: 400, y: 50}
+  m_AnchoredPosition: {x: -572, y: 260}
+  m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1530946208
 MonoBehaviour:
