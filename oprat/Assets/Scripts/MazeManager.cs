@@ -233,19 +233,19 @@ public class MazeManager : MonoBehaviour
 
     int ComputeScore(float timer)
     {
-        if (timer < 6f)
+        if (timer < 4f)
         {
             return 5;
         }
-        else if (timer < 8f)
+        else if (timer < 5f)
         {
             return 4;
         }
-        else if (timer < 10f)
+        else if (timer < 8f)
         {
             return 3;
         }
-        else if (timer < 11f)
+        else if (timer < 12f)
         {
             return 2;
         }

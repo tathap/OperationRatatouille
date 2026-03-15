@@ -44,4 +44,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c817a55fc8ebaf4ab618a0472dc982e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  round: 0
+  money: 0
+  qualityScore: 0
+  varietyScore: 0
   cart: []
+  supermarketHaulTemplate:
+  - condition: 5
+    config: {fileID: 11400000, guid: 3e1f8a540c6fbe34b806ab3fe981403a, type: 2}
+  - condition: 5
+    config: {fileID: 11400000, guid: 0a147c680688fcc43889fbe5f56f8c31, type: 2}
+  - condition: 5
+    config: {fileID: 11400000, guid: 711a95ef67217d440a95ee4b4c45e033, type: 2}
+  - condition: 5
+    config: {fileID: 11400000, guid: 7f27666cff408684abe0eec81bac50e4, type: 2}
+  fastFoodHaulTemplate:
+  - condition: 3
+    config: {fileID: 11400000, guid: 0a147c680688fcc43889fbe5f56f8c31, type: 2}
+  - condition: 3
+    config: {fileID: 11400000, guid: 711a95ef67217d440a95ee4b4c45e033, type: 2}
+  - condition: 3
+    config: {fileID: 11400000, guid: 3e1f8a540c6fbe34b806ab3fe981403a, type: 2}
+  weekText: {fileID: 0}
+  moneyText: {fileID: 0}
+  qualityText: {fileID: 0}
+  varietyText: {fileID: 0}
+  dairyInCart: {fileID: 0}
+  grainInCart: {fileID: 0}
+  proteinInCart: {fileID: 0}
+  produceInCart: {fileID: 0}
