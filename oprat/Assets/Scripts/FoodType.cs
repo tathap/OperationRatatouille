@@ -2,8 +2,7 @@ using UnityEngine;
 
 public enum FoodType
 {
-    FRUIT,
-    VEGETABLE,
+    PRODUCE,
     GRAIN,
     PROTEIN,
     DAIRY

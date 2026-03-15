@@ -45,3 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   milkConfig: {fileID: 11400000, guid: 78299ba4caa409e468039d6b9a674e5f, type: 2}
+  fishConfig: {fileID: 11400000, guid: dc1df6ce24e24ba4298c0388503f805e, type: 2}
+  fruitConfig: {fileID: 11400000, guid: 722826b37081a414eb14ebeadba73030, type: 2}
+  maizeConfig: {fileID: 11400000, guid: 0ba92d5572659644ab1764f810ec037d, type: 2}

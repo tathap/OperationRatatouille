@@ -4,14 +4,23 @@ using UnityEngine;
 [Serializable]
 public class FoodInstance
 {
-    [SerializeField] float condition;
+    [SerializeField] int condition;
     [SerializeField] FoodConfig config;
 
 
-    public FoodInstance(float condition, FoodConfig config)
+    public FoodInstance(int condition, FoodConfig config)
     {
         this.condition = condition;
         this.config = config;
+    }
+
+    public int GetCondition()
+    {
+        return condition;
+    }
+    public FoodConfig GetFoodConfig()
+    {
+        return config;
     }
 
 }
