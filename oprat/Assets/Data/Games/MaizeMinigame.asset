@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MaizeMinigame
   m_EditorClassIdentifier: 
   Name: Maize
-  GoalInstr: Make it to the goal as fast as possible!
+  GoalInstr: Complete 3 mazes as fast as you can!
   ControlsInstr: WASD or Arrows to move!
   cost: 15
   backgroundColor: {r: 0.019971518, g: 0.20754719, b: 0.11300901, a: 0.7607843}

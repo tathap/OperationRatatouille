@@ -1,10 +1,13 @@
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class MazeManager : MonoBehaviour
 {
     FishGameHook gameHook;
+    [SerializeField] TMP_Text timerText;
 
     const int BLANK = 0;
     const int WALL = 1;
@@ -13,16 +16,19 @@ public class MazeManager : MonoBehaviour
     float timer = 0;
 
     [SerializeField] GameObject mazeParentSeedPosition;
+    List<GameObject> mazeBlocks = new List<GameObject>();
     [SerializeField] float stepInterval;
-    const int ROWS = 5;
-    const int COLS = 5;
+    [SerializeField] int mazesPerPlay;
+    int mazeIdx = 0;
+    const int ROWS = 7;
+    const int COLS = 7;
     [SerializeField] GameObject wallPrefab;
     [SerializeField] GameObject goalPrefab;
     [SerializeField] GameObject playerPrefab;
     bool canMove = false;
     GameObject playerInstance;
-    [SerializeField] int[,] mazeState;
-    [SerializeField] int[] playerPos = { 0, 0 };
+    int[,] mazeState;
+    int[] playerPos = { 0, 0 };
 
     List<int[,]> mazes = new List<int[,]>();
 
@@ -35,51 +41,63 @@ public class MazeManager : MonoBehaviour
     {
         int[,] maze1 =
         {
-            {2,0,1,0,0},
-            {1,0,0,0,1},
-            {1,0,1,0,1},
-            {0,0,0,0,0},
-            {0,1,1,1,3}
+            {1,1,1,1,1,1,1},
+            {1,2,0,1,0,0,1},
+            {1,1,0,0,0,1,1},
+            {1,1,0,1,0,1,1},
+            {1,0,0,0,0,0,1},
+            {1,0,1,1,1,3,1},
+            {1,1,1,1,1,1,1}
         };
         int[,] maze2 =
         {
-            {2,0,0,0,0},
-            {0,1,1,0,1},
-            {0,0,0,0,0},
-            {0,1,0,1,1},
-            {0,1,0,0,3}
+            {1,1,1,1,1,1,1},
+            {1,2,0,0,0,0,1},
+            {1,0,1,1,0,1,1},
+            {1,0,0,0,0,0,1},
+            {1,0,1,0,1,1,1},
+            {1,0,1,0,0,3,1},
+            {1,1,1,1,1,1,1}
         };
         int[,] maze3 =
         {
-            {1,0,0,2,0},
-            {0,0,1,1,0},
-            {0,1,3,1,0},
-            {0,0,0,1,0},
-            {1,1,0,0,0}
+            {1,1,1,1,1,1,1},
+            {1,1,0,0,2,0,1},
+            {1,0,0,1,1,0,1},
+            {1,0,1,3,1,0,1},
+            {1,0,0,0,1,0,1},
+            {1,1,1,0,0,0,1},
+            {1,1,1,1,1,1,1}
         };
         int[,] maze4 =
         {
-            {0,0,3,0,0},
-            {1,1,1,1,0},
-            {0,0,0,1,0},
-            {0,1,2,1,0},
-            {0,1,0,0,0}
+            {1,1,1,1,1,1,1},
+            {1,0,0,3,0,0,1},
+            {1,1,1,1,1,0,1},
+            {1,0,0,0,1,0,1},
+            {1,0,1,2,1,0,1},
+            {1,0,1,0,0,0,1},
+            {1,1,1,1,1,1,1}
         };
         int[,] maze5 =
         {
-            {2,0,0,0,0},
-            {0,1,1,0,1},
-            {0,0,1,0,0},
-            {1,0,0,0,0},
-            {1,1,0,1,3}
+            {1,1,1,1,1,1,1},
+            {1,2,0,0,0,0,1},
+            {1,0,1,1,0,1,1},
+            {1,0,0,1,0,0,1},
+            {1,1,0,0,0,0,1},
+            {1,1,1,0,1,3,1},
+            {1,1,1,1,1,1,1}
         };
         int[,] maze6 =
         {
-            {0,0,0,0,0},
-            {0,0,0,0,0},
-            {0,2,1,3,0},
-            {0,0,0,0,0},
-            {0,0,0,0,0}
+            {1,1,1,1,1,1,1},
+            {1,0,0,0,0,0,1},
+            {1,0,0,0,0,0,1},
+            {1,0,2,1,3,0,1},
+            {1,0,0,0,0,0,1},
+            {1,0,0,0,0,0,1},
+            {1,1,1,1,1,1,1}
         };
 
         mazes.Add(maze1);
@@ -96,8 +114,6 @@ public class MazeManager : MonoBehaviour
         {
             for (int j = 0; j < COLS; j++)
             {
-                print(i + ", " + j + " - " + ROWS);
-
                 Vector3 position = (
                     mazeParentSeedPosition.transform.position
                     + new Vector3(j * stepInterval, 0, 0)
@@ -121,8 +137,23 @@ public class MazeManager : MonoBehaviour
                     playerPos[0] = i;
                     playerPos[1] = j;
                 }
+
+                mazeBlocks.Add(myObj);
             }
         }
+    }
+    public void ClearMaze()
+    {
+        foreach (GameObject obj in mazeBlocks)
+        {
+            Destroy(obj);
+        }
+        mazeBlocks.Clear();
+    }
+    public void GenerateRandomMaze()
+    {
+        mazeState = (int[,])mazes[Random.Range(0, 6)].Clone();
+        GenerateMaze(mazeState);
     }
     public void TryMove(Vector2 inputVector)
     {
@@ -137,7 +168,7 @@ public class MazeManager : MonoBehaviour
         }
         if (mazeState[newY, newX] == GOAL)
         {
-            EndGame();
+            HandleMazeCompletion();
             return;
         }
         mazeState[playerPos[0], playerPos[1]] = 0;
@@ -152,14 +183,25 @@ public class MazeManager : MonoBehaviour
             + new Vector3(0, playerPos[0] * stepInterval, 0)
         );
     }
+    void HandleMazeCompletion()
+    {
+        mazeIdx++;
+        if (mazeIdx < mazesPerPlay)
+        {
+            ClearMaze();
+            GenerateRandomMaze();
+        }
+        else
+        {
+            EndGame();
+        }
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         InitializeMazes();
-        mazeState = mazes[Random.Range(0, 6)];
-        print(mazeState);
-        GenerateMaze(mazeState);
+        GenerateRandomMaze();
         canMove = true;
     }
 
@@ -169,6 +211,7 @@ public class MazeManager : MonoBehaviour
         if (!canMove) return;
 
         timer += Time.deltaTime;
+        timerText.text = timer.ToString("F2");
 
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -190,19 +233,19 @@ public class MazeManager : MonoBehaviour
 
     int ComputeScore(float timer)
     {
-        if (timer < 2f)
+        if (timer < 6f)
         {
             return 5;
         }
-        else if (timer < 3f)
+        else if (timer < 8f)
         {
             return 4;
         }
-        else if (timer < 4f)
+        else if (timer < 10f)
         {
             return 3;
         }
-        else if (timer < 5f)
+        else if (timer < 11f)
         {
             return 2;
         }
