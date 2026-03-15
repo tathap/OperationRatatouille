@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Scene01 : MonoBehaviour
 {
@@ -9,31 +10,31 @@ public class Scene01 : MonoBehaviour
         "road breaking the silence, the events of the day run through my mind in a " +
         "cloudy haze. A sweet fragrance lingers on my grass-stained talons.\r\n";
     string text02 = "I cross another wreckage from the recent flood. My grandmother " +
-        "taught me that the yearly rain was the world’s gift to our people, sustaining " +
+        "taught me that the yearly rain was the worldï¿½s gift to our people, sustaining " +
         "our daily life. But seeing the destroyed fields and mangled infrastructure, I " +
-        "can’t help but doubt her words. I try not to think of it as a bad omen.\r\n";
+        "canï¿½t help but doubt her words. I try not to think of it as a bad omen.\r\n";
     string text03 = "I turn the corner and inhale deeply as a gust of wind blows past " +
         "me. The shade of the sugar stalks cools my skin and, up ahead, Macadamia " +
         "Village reflects amber in the evening sun.";
     string text04 = "Minutes later, I reach my front door. As I reach for my keys, " +
         "I hear someone call my name.\r\n";
-    string text05 = "“Mrs. Crane!” A nasally voice called out, crinkling the air. " +
+    string text05 = "ï¿½Mrs. Crane!ï¿½ A nasally voice called out, crinkling the air. " +
         "I sigh and force a smile.\r\n";
-    string text06 = "“Ah, Mr. Baboon… what is it?”\r\n";
-    string text07 = "“I hope your farm work went well today! Have you done your groceries " +
-        "yet this week?” Grimes Baboon wrings his hands “Please, come by BaboonoMart " +
-        "anytime for your shopping needs. I’m sure your lovely children need the " +
-        "nutrition to grow strong.”\r\n";
-    string text08 = "I really wish he wouldn’t talk about Jack and Jill to advertise his " +
-        "store. Still, it’s true that I’ve yet to complete my shopping for the week. " +
-        "“I’ll consider it.” I say, opening the door.\r\n";
-    string text09 = "“I’m sure it’s what your husband would’ve wanted.”\r\n";
-    string text10 = "“Good day, Mr. Baboon.” I spit curtly as I close the door behind me.\r\n";
-    string text11 = "Ignoring Grimes’s protests receding behind the door, I walk to the " +
+    string text06 = "ï¿½Ah, Mr. Baboonï¿½ what is it?ï¿½\r\n";
+    string text07 = "ï¿½I hope your farm work went well today! Have you done your groceries " +
+        "yet this week?ï¿½ Grimes Baboon wrings his hands ï¿½Please, come by BaboonoMart " +
+        "anytime for your shopping needs. Iï¿½m sure your lovely children need the " +
+        "nutrition to grow strong.ï¿½\r\n";
+    string text08 = "I really wish he wouldnï¿½t talk about Jack and Jill to advertise his " +
+        "store. Still, itï¿½s true that Iï¿½ve yet to complete my shopping for the week. " +
+        "ï¿½Iï¿½ll consider it.ï¿½ I say, opening the door.\r\n";
+    string text09 = "ï¿½Iï¿½m sure itï¿½s what your husband wouldï¿½ve wanted.ï¿½\r\n";
+    string text10 = "ï¿½Good day, Mr. Baboon.ï¿½ I spit curtly as I close the door behind me.\r\n";
+    string text11 = "Ignoring Grimesï¿½s protests receding behind the door, I walk to the " +
         "kitchen and take a look inside the pantry. Empty. I turn to leave but an old portrait " +
         "catches my eye.\r\n";
     string text12 = "Brushing a wing against it, I smile weakly at the four smiling figures.\r\n";
-    string text13 = "I make my way to the kids’ room. Jack shouldn’t be home from school yet, " +
+    string text13 = "I make my way to the kidsï¿½ room. Jack shouldnï¿½t be home from school yet, " +
         "but Jill should be in the house. I gently open the door.\r\n";
     string text14 = "Inside, seven year-old Jill Crane lies collapsed on the floor.\r\n";
     ArrayList textList = new ArrayList();
@@ -41,7 +42,7 @@ public class Scene01 : MonoBehaviour
     public GameObject Kyla;
     public GameObject Baboon;
     public GameObject TextboxFrame;
-    
+
     [SerializeField] string textToScroll;
     [SerializeField] int currentTextLength;
     [SerializeField] int textLength;
@@ -70,6 +71,7 @@ public class Scene01 : MonoBehaviour
                 if (eventPos >= textList.Count)
                 {
                     print("Load next scene");
+                    SceneManager.LoadScene("RoundScene");
                 }
                 else
                 {
