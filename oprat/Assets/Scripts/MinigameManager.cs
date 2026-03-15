@@ -25,6 +25,7 @@ public class MinigameManager : MonoBehaviour
     public void Start()
     {
         rsm = FindFirstObjectByType<RoundStateManager>();
+        print(rsm != null);
     }
 
     public void EnterGame(MinigameConfig config)
@@ -78,7 +79,7 @@ public class MinigameManager : MonoBehaviour
     public void HandleGameEnd(int finalScore)
     {
         print("Game End! Score: " + finalScore.ToString());
-        FoodInstance reward = new FoodInstance(finalScore, currentConfig.foodConfig);
+        FoodInstance reward = new(finalScore, currentConfig.foodConfig);
         rsm.RecieveGameReward(reward);
         ExitGame();
     }
