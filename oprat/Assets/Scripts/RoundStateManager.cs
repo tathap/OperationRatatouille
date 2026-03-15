@@ -27,6 +27,10 @@ public class RoundStateManager : MonoBehaviour
     [SerializeField] TMP_Text moneyText;
     [SerializeField] TMP_Text qualityText;
     [SerializeField] TMP_Text varietyText;
+    [SerializeField] GameObject dairyInCart;
+    [SerializeField] GameObject grainInCart;
+    [SerializeField] GameObject proteinInCart;
+    [SerializeField] GameObject produceInCart;
 
     public void UpdateUI()
     {
@@ -42,6 +46,11 @@ public class RoundStateManager : MonoBehaviour
             qualityText.text = "N/A";
             varietyText.text = "N/A";
         }
+
+        dairyInCart.SetActive(hasDairy);
+        grainInCart.SetActive(hasGrain);
+        proteinInCart.SetActive(hasProtein);
+        produceInCart.SetActive(hasProduce);
     }
 
     public void Awake()
@@ -52,7 +61,7 @@ public class RoundStateManager : MonoBehaviour
     public void Start()
     {
         // test initialize
-        Initialize(1, 250);
+        Initialize(4, 50);
     }
 
     public void Initialize(int round, int money)
