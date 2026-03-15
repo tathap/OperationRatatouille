@@ -16,6 +16,9 @@ public class RoundStateManager : MonoBehaviour
     [Header("Cart")]
     [SerializeField] List<FoodInstance> cart = new List<FoodInstance>();
 
+    [SerializeField] List<FoodInstance> supermarketHaulTemplate = new List<FoodInstance>();
+    [SerializeField] List<FoodInstance> fastFoodHaulTemplate = new List<FoodInstance>();
+
     bool hasProduce = false;
     bool hasGrain = false;
     bool hasProtein = false;
@@ -39,7 +42,7 @@ public class RoundStateManager : MonoBehaviour
         if (cart.Count > 0)
         {
             qualityText.text = "avg quality: " + ((float)qualityScore / cart.Count).ToString("F2");
-            varietyText.text = "avg variety: " + ((float)varietyScore / cart.Count).ToString("F2");
+            varietyText.text = "variety: " + varietyScore;
         }
         else
         {
@@ -61,7 +64,7 @@ public class RoundStateManager : MonoBehaviour
     public void Start()
     {
         // test initialize
-        Initialize(4, 50);
+        Initialize(4, 150);
     }
 
     public void Initialize(int round, int money)
@@ -69,6 +72,21 @@ public class RoundStateManager : MonoBehaviour
         this.round = round;
         this.money = money;
         UpdateUI();
+    }
+    public void OnPurchaseSupermarket()
+    {
+        foreach (FoodInstance item in supermarketHaulTemplate)
+        {
+            RecieveGameReward(item);
+        }
+    }
+
+    public void OnPurchaseFastFood()
+    {
+        foreach (FoodInstance item in fastFoodHaulTemplate)
+        {
+            RecieveGameReward(item);
+        }
     }
 
     /// <summary>
