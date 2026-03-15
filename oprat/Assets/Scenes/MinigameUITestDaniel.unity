@@ -510,9 +510,17 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 647374605}
+    - target: {fileID: 2506543894503996975, guid: 8356538326342e440ab088a605766a8f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartFish
+      objectReference: {fileID: 0}
     - target: {fileID: 3184620754902832234, guid: 8356538326342e440ab088a605766a8f, type: 3}
       propertyPath: m_Name
-      value: PlayMilkTestButton (1)
+      value: PlayFishTestButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124708983286333820, guid: 8356538326342e440ab088a605766a8f, type: 3}
+      propertyPath: m_text
+      value: fih
       objectReference: {fileID: 0}
     - target: {fileID: 5124708983286333820, guid: 8356538326342e440ab088a605766a8f, type: 3}
       propertyPath: m_fontAsset
@@ -1206,6 +1214,10 @@ PrefabInstance:
       value: PlayMilkTestButton
       objectReference: {fileID: 0}
     - target: {fileID: 5124708983286333820, guid: 8356538326342e440ab088a605766a8f, type: 3}
+      propertyPath: m_text
+      value: milk
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124708983286333820, guid: 8356538326342e440ab088a605766a8f, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: acf46ddc598ae11468bd8510071350fc, type: 2}
@@ -1283,7 +1295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7321731909388266664, guid: 8356538326342e440ab088a605766a8f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 129
+      value: 170
       objectReference: {fileID: 0}
     - target: {fileID: 7321731909388266664, guid: 8356538326342e440ab088a605766a8f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

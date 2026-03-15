@@ -14,7 +14,6 @@ public class FishGameLogicScript : MonoBehaviour
     bool playerClickContinue = false;
     bool playerClickEnd = false;
     [SerializeField] public int considerIndex = 1;
-    [SerializeField] int bestIndex = 0;
     public GameObject curObject;
     public int numChosen = 0;
     [SerializeField] List<int> chosenFish;
@@ -70,7 +69,7 @@ public class FishGameLogicScript : MonoBehaviour
                 finalOrder.Add(order[j]);
             }
         }
-        curObject = Instantiate(allFish[bestIndex], new Vector3(-3f, 1, 0), Quaternion.identity);
+        curObject = Instantiate(allFish[finalOrder[considerIndex]], new Vector3(-3f, 1, 0), Quaternion.identity);
         curObject.transform.localScale = new Vector3(2f, 2f, 2f);
         chosenFish = new List<int>();
     }
@@ -82,7 +81,7 @@ public class FishGameLogicScript : MonoBehaviour
         {
             playerClickEnd = false;
             numChosen++;
-            chosenFish.Add(finalOrder[bestIndex]);
+            chosenFish.Add(finalOrder[considerIndex]);
             if (numChosen == 3)
             {
                 considerIndex++;
@@ -99,27 +98,13 @@ public class FishGameLogicScript : MonoBehaviour
             playerClickContinue = false;
 
             Destroy(curObject);
-            if (considerIndex == 8)
-            {
-                bestIndex = 8;
-
-                curObject = Instantiate(allFish[finalOrder[bestIndex]], new Vector3(-3f, 1, 0), Quaternion.identity);
-                curObject.transform.localScale = new Vector3(2f, 2f, 2f);
-                //game over
-                Debug.Log("It's over");
-            }
-            else
-            {
-                bestIndex = considerIndex;
-                considerIndex++;
-                curObject = Instantiate(allFish[finalOrder[bestIndex]], new Vector3(-3f, 1, 0), Quaternion.identity);
-                curObject.transform.localScale = new Vector3(2f, 2f, 2f);
-            }
+            considerIndex++;
+            curObject = Instantiate(allFish[finalOrder[considerIndex]], new Vector3(-3f, 1, 0), Quaternion.identity);
+            curObject.transform.localScale = new Vector3(2f, 2f, 2f);
 
             if (considerIndex + (3 - numChosen) >= 9)
             {
                 Debug.Log(numChosen + " " + considerIndex);
-                Debug.Log(bestIndex);
                 Debug.Log("Player has to choose all of the remaining fish");
                 continueButton.SetActive(false);
             }
@@ -139,15 +124,20 @@ public class FishGameLogicScript : MonoBehaviour
     public int CalculateScore()
     {
         float sum = 0;
-        foreach (int fish in chosenFish)
+        foreach (int fishValue in chosenFish)
         {
-            sum += fish;
+            sum += fishValue + 1;
         }
         int score = Mathf.RoundToInt(sum / chosenFish.Count);
         return score;
     }
     public void EndGame()
     {
+
+        if (curObject != null)
+        {
+            Destroy(curObject);
+        }
         int score = CalculateScore();
         gameHook.HandleGameEnd(score);
     }
