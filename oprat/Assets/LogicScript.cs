@@ -75,6 +75,7 @@ public class LogicScript : MonoBehaviour
             chosenFish.Add(finalOrder[bestIndex]);
             if (numChosen == 3)
             { 
+                considerIndex++;
                 Debug.Log("Player has chosen all possible items!");
             }
             else
@@ -83,7 +84,7 @@ public class LogicScript : MonoBehaviour
             }
         }
         if (playerClickContinue) {
-            if (considerIndex + (3 - numChosen) - 1 == 8)
+            if (considerIndex + (3 - numChosen) - 1 >= 8)
             {
                 Debug.Log(numChosen + " " + considerIndex);
                 Debug.Log(bestIndex);
