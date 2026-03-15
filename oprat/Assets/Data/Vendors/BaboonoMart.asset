@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BaboonoMart
   m_EditorClassIdentifier: Assembly-CSharp::VendorConfig
   Name: BaboonoMart
-  cost: 120
+  cost: 100
   qualityType: 0
   types: 00000000010000000200000003000000
   minigameConfig: {fileID: 0}
