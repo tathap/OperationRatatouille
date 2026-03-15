@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf5c22cfae42db498a08d2575c8be08, type: 3}
   m_Name: MilkConfig
   m_EditorClassIdentifier: 
+  Sprite: {fileID: 21300000, guid: 27d9a20a1588fb547bdb8910f8975955, type: 3}
+  Type: 4
+  NeedsPrep: 0

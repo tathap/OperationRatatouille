@@ -15,6 +15,8 @@ MonoBehaviour:
   Name: Milk ATM Shake
   GoalInstr: Shake the Milk just the right amount!
   ControlsInstr: Tap space to shake
+  cost: 10
   backgroundColor: {r: 0, g: 0.009439283, b: 0.335849, a: 0.58431375}
   gameWindowColor: {r: 0.4584905, g: 0.88108027, b: 1, a: 1}
   gameSourcePrefab: {fileID: 7051950663976672066, guid: 30103be1c85cbed4b888fa4a96ec1765, type: 3}
+  foodConfig: {fileID: 11400000, guid: 711a95ef67217d440a95ee4b4c45e033, type: 2}
