@@ -4,6 +4,7 @@ public class MinigameRegistry : MonoBehaviour
 {
     MinigameManager minigameManager;
     [SerializeField] MinigameConfig milkConfig;
+    [SerializeField] MinigameConfig fishConfig;
 
     public void Awake()
     {
@@ -13,5 +14,10 @@ public class MinigameRegistry : MonoBehaviour
     public void StartMilk()
     {
         minigameManager.EnterGame(milkConfig);
+    }
+
+    public void StartFish()
+    {
+        minigameManager.EnterGame(fishConfig);
     }
 }
