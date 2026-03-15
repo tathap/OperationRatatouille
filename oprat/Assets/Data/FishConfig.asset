@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7cf5c22cfae42db498a08d2575c8be08, type: 3}
-  m_Name: MilkConfig
+  m_Name: FishConfig
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 21300000, guid: 27d9a20a1588fb547bdb8910f8975955, type: 3}
-  Type: 3
-  NeedsPrep: 0
+  Sprite: {fileID: 21300000, guid: d06b84b59a53542c0995822fe44b0fd6, type: 3}
+  Type: 2
+  NeedsPrep: 1

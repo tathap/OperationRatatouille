@@ -2,23 +2,32 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SocialPlatforms.Impl;
 
-public class LogicScript : MonoBehaviour
+public class FishGameLogicScript : MonoBehaviour
 {
+    FishGameHook gameHook;
+
     public List<GameObject> allFish;
-    List<int> order;
-    List<int> finalOrder;
+    [SerializeField] List<int> order;
+    [SerializeField] List<int> finalOrder;
     bool playerClickContinue = false;
     bool playerClickEnd = false;
-    public int considerIndex = 1;
-    int bestIndex = 0;
+    [SerializeField] public int considerIndex = 1;
     public GameObject curObject;
     public int numChosen = 0;
-    List<int> chosenFish;
+    [SerializeField] List<int> chosenFish;
 
+    [SerializeField] GameObject continueButton;
+
+
+    void Awake()
+    {
+        gameHook = FindFirstObjectByType<FishGameHook>();
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {        
+    {
         order = new List<int>();
         for (int i = 0; i < 5; i++)
         {
@@ -60,7 +69,7 @@ public class LogicScript : MonoBehaviour
                 finalOrder.Add(order[j]);
             }
         }
-        curObject = Instantiate(allFish[bestIndex], new Vector3(-4f, 2, 0), Quaternion.identity);
+        curObject = Instantiate(allFish[finalOrder[considerIndex]], new Vector3(-3f, 1, 0), Quaternion.identity);
         curObject.transform.localScale = new Vector3(2f, 2f, 2f);
         chosenFish = new List<int>();
     }
@@ -72,43 +81,32 @@ public class LogicScript : MonoBehaviour
         {
             playerClickEnd = false;
             numChosen++;
-            chosenFish.Add(finalOrder[bestIndex]);
+            chosenFish.Add(finalOrder[considerIndex]);
             if (numChosen == 3)
-            { 
+            {
                 considerIndex++;
                 Debug.Log("Player has chosen all possible items!");
+                EndGame();
             }
             else
             {
                 playerClickContinue = true;
             }
         }
-        if (playerClickContinue) {
-            if (considerIndex + (3 - numChosen) - 1 >= 8)
-            {
-                Debug.Log(numChosen + " " + considerIndex);
-                Debug.Log(bestIndex);
-                Debug.Log("Player has to choose all of the remaining fish");
-            }
-
+        if (playerClickContinue)
+        {
             playerClickContinue = false;
 
             Destroy(curObject);
-            if (considerIndex == 8)
+            considerIndex++;
+            curObject = Instantiate(allFish[finalOrder[considerIndex]], new Vector3(-3f, 1, 0), Quaternion.identity);
+            curObject.transform.localScale = new Vector3(2f, 2f, 2f);
+
+            if (considerIndex + (3 - numChosen) >= 9)
             {
-                bestIndex = 8;
-              
-                curObject = Instantiate(allFish[finalOrder[bestIndex]], new Vector3(-4f, 2, 0), Quaternion.identity);
-                curObject.transform.localScale = new Vector3(2f, 2f, 2f);
-                //game over
-                Debug.Log("It's over");
-            }
-            else
-            {
-                bestIndex = considerIndex;
-                considerIndex++;
-                curObject = Instantiate(allFish[finalOrder[bestIndex]], new Vector3(-4f, 2, 0), Quaternion.identity);
-                curObject.transform.localScale = new Vector3(2f, 2f, 2f);
+                Debug.Log(numChosen + " " + considerIndex);
+                Debug.Log("Player has to choose all of the remaining fish");
+                continueButton.SetActive(false);
             }
         }
     }
@@ -121,5 +119,26 @@ public class LogicScript : MonoBehaviour
     public void EndClick()
     {
         playerClickEnd = true;
+    }
+
+    public int CalculateScore()
+    {
+        float sum = 0;
+        foreach (int fishValue in chosenFish)
+        {
+            sum += fishValue + 1;
+        }
+        int score = Mathf.RoundToInt(sum / chosenFish.Count);
+        return score;
+    }
+    public void EndGame()
+    {
+
+        if (curObject != null)
+        {
+            Destroy(curObject);
+        }
+        int score = CalculateScore();
+        gameHook.HandleGameEnd(score);
     }
 }

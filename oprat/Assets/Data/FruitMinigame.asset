@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76e6b52d1b82d4846893b28636f006df, type: 3}
+  m_Name: FruitMinigame
+  m_EditorClassIdentifier: 
+  Name: Produce Parachute
+  GoalInstr: Catch the fruits and avoid bad ones!
+  ControlsInstr: A/D or arrows to move left/right
+  cost: 20
+  backgroundColor: {r: 0.4113207, g: 0.20151056, b: 0, a: 1}
+  gameWindowColor: {r: 0.96981126, g: 0.40583774, b: 0, a: 1}
+  gameSourcePrefab: {fileID: 84887598226905751, guid: d4adde151b2968341906faf8a4e9f4f7, type: 3}
+  foodConfig: {fileID: 11400000, guid: 7f27666cff408684abe0eec81bac50e4, type: 2}

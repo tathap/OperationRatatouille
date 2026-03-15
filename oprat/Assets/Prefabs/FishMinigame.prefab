@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4652619048720400929}
+  - component: {fileID: 6440017332756525082}
   m_Layer: 0
   m_Name: FishMinigame
   m_TagString: Untagged
@@ -37,6 +38,18 @@ Transform:
   - {fileID: 5787099119163142514}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6440017332756525082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190083397891473496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40482267464ba43498cd0678027d7176, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2993946331987602013
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,12 +250,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -557,14 +570,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allFish:
-  - {fileID: 6378240106484730632, guid: 831b0d6d3875d4a2f8c42e8abd3c152a, type: 3}
-  - {fileID: 8676477843360066601, guid: 70943e0af9381463cb7297a031762465, type: 3}
-  - {fileID: 7328555611962438274, guid: 6393d0103b35b43b1af97c1818dfd5bb, type: 3}
   - {fileID: 652341314208907787, guid: 10190d346ff7345f2b0232b108d280d8, type: 3}
+  - {fileID: 6378240106484730632, guid: 831b0d6d3875d4a2f8c42e8abd3c152a, type: 3}
+  - {fileID: 7328555611962438274, guid: 6393d0103b35b43b1af97c1818dfd5bb, type: 3}
+  - {fileID: 8676477843360066601, guid: 70943e0af9381463cb7297a031762465, type: 3}
   - {fileID: 955851258989582534, guid: 1e9d17c9c87fb4ef2914373ac515c11c, type: 3}
-  considerIndex: 1
+  order: 
+  finalOrder: 
+  considerIndex: 0
+  bestIndex: 0
   curObject: {fileID: 0}
   numChosen: 0
+  chosenFish: 
+  continueButton: {fileID: 8621136719178374840}
 --- !u!1 &7992154733396683292
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,9 +617,9 @@ RectTransform:
   - {fileID: 6745028181450647630}
   m_Father: {fileID: 6692256868442211743}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -440, y: -300}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 519, y: 165}
   m_SizeDelta: {x: 600, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5919512457472312677
@@ -871,9 +889,9 @@ RectTransform:
   - {fileID: 6872720237778268997}
   m_Father: {fileID: 6692256868442211743}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 440, y: -300}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -519, y: 166}
   m_SizeDelta: {x: 600, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3324485925405812983
@@ -1003,9 +1021,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6692256868442211743}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -555, y: 373}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 481, y: -233}
   m_SizeDelta: {x: 800, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5704333415871507252
@@ -1037,7 +1055,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 3247251957edc844fb7a177e53c6e725, type: 3}
     m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
